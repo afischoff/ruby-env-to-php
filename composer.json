@@ -2,12 +2,13 @@
   "name": "afischoff/ruby-env-to-php",
   "description" : "Allows a PHP codebase to use an existing Ruby \".env\" configuration file. This allows both codebases to share the same configuration.",
   "require": {
-	"php": ">=4.1.0"
+    "php": ">=4.1.0"
   },
   "license" : "MIT",
   "autoload": {
-	"psr-0": {
-	  "Afischoff": "src/"
-	}
-  }
+    "psr-0": {
+      "Afischoff": "src/"
+    }
+  },
+  "preferred-install": "dev"
 }
