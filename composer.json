@@ -9,6 +9,5 @@
     "psr-0": {
       "Afischoff": "src/"
     }
-  },
-  "preferred-install": "dev"
+  }
 }
