@@ -70,7 +70,12 @@ class RubyEnvToPhp
 		$credsHost = explode('@', $string);
 		list($user, $password) = explode(':', $credsHost[0]);
 		list($hostraw, $db) = explode('/', $credsHost[1]);
-		list($host, $port) = explode(':', $hostraw);
+		if (strpos($hostraw, ":") !== false) {
+			list($host, $port) = explode(':', $hostraw);
+		} else {
+			$host = $hostraw;
+			$port = 3306;
+		}
 
 		static::setEnvironmentVariable('DB_CONNECTION', $connection);
 		static::setEnvironmentVariable('DB_HOST', $host);
