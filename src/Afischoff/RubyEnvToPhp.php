@@ -77,6 +77,7 @@ class RubyEnvToPhp
 			$port = 3306;
 		}
 
+		$query = "";
 		if (strpos($db, "?") !== false) {
 			list($db, $query) = explode('?', $db);
 		}
