@@ -77,11 +77,16 @@ class RubyEnvToPhp
 			$port = 3306;
 		}
 
+		if (strpos($db, "?") !== false) {
+			list($db, $query) = explode('?', $db);
+		}
+
 		static::setEnvironmentVariable('DB_CONNECTION', $connection);
 		static::setEnvironmentVariable('DB_HOST', $host);
 		static::setEnvironmentVariable('DB_PORT', $port);
 		static::setEnvironmentVariable('DB_DATABASE', $db);
 		static::setEnvironmentVariable('DB_USERNAME', $user);
 		static::setEnvironmentVariable('DB_PASSWORD', $password);
+		static::setEnvironmentVariable('DB_ADDITIONAL_PARAMS', $query);
 	}
 }
