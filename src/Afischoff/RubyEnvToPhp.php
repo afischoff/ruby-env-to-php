@@ -48,12 +48,35 @@ class RubyEnvToPhp
 	{
 		list($key, $val) = explode("=", $line);
 		$val = trim($val);
-		$val = str_replace(["\"", "'"], "", $val);
+		$val = static::unQuote(trim($val));
 
 		$key = trim($key);
-		$key = str_replace(["ENV[", "]", "\"", "'"], "", $key);
+		$key = str_replace(["ENV[", "]"], "", $key);
+		$key = static::unQuote($key);
 
 		return [$key, $val];
+	}
+
+	/**
+	 * @param string $value
+	 * @return string
+	 */
+	public static function unQuote($value)
+	{
+		$len = strlen($value);
+
+		if ($len <2) {
+			return $value;
+		}
+
+		$first = substr($value, 0, 1);
+		$last = substr($value, -1, 1);
+
+		if ($first === $last && $first === '"' || $first === "'") {
+			return substr($value, 1, strlen($value)-2);
+		}
+
+		return $value;
 	}
 
 	/**
